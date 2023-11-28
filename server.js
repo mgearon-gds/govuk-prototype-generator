@@ -5,8 +5,9 @@ const path = require('path');
 const OpenAI = require('openai');
 const fs = require('fs');
 require('dotenv').config();
-const htmlTemplate = require('./public/templates/htmlTemplate'); // Import the HTML template
 
+//Templates
+const htmlTemplate = require('./public/templates/htmlTemplate'); // Import the HTML template
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -34,7 +35,7 @@ app.post('/sendToOpenAI', async (req, res) => {
     const htmlContent = completion.choices[0].message.content;
     const filename = `${Date.now()}.html`;
 
-    fs.writeFile('public/' + filename, htmlTemplate(htmlContent), (err) => {
+    fs.writeFile('public/pages/' + filename, htmlTemplate(htmlContent), (err) => {
       if (err) {
         console.error('Error writing file:', err);
       }
@@ -46,7 +47,6 @@ app.post('/sendToOpenAI', async (req, res) => {
     };
 
     res.json(responseObj);
-
 
   } catch(error) {
   	console.error('Error in OpenAI API call:', error);

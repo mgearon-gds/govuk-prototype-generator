@@ -23,7 +23,7 @@ document.getElementById('question-submission').addEventListener('submit', functi
     // document.getElementById('response-output').textContent = data.completion.choices[0].message.content;
     document.getElementById('spinner').classList.add('hidden');
     document.getElementById('notification-banner').classList.remove('hidden');
-    document.getElementById('new-link').href = data.filename;
+    document.getElementById('new-link').href = 'pages/' + data.filename;
 	})
 	.catch((error) => {
     console.error('Fetch Error:', error);
