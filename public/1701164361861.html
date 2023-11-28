@@ -54,18 +54,16 @@
       </div>
     </header>
     <div class="govuk-width-container ">
-      <main class="govuk-main-wrapper" id="main-content" role="main">
+      <main>
   <a href="#" class="govuk-back-link">Back</a>
-  <h1 class="govuk-heading-xl">Your headline</h1>
-  <div class="govuk-form-group">
-    <label class="govuk-label" for="text-input-id">
-      Your label
-    </label>
-    <input class="govuk-input" id="text-input-id" name="text-input-name" type="text">
-  </div>
-  <button class="govuk-button" type="submit">
-    Submit
-  </button>
+  <h1 class="govuk-heading-l">Question</h1>
+  <form action="/submit-form" method="post" class="govuk-form-group">
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="text-input">Label</label>
+      <input class="govuk-input" id="text-input" name="text-input" type="text">
+    </div>
+    <button type="submit" class="govuk-button">Submit</button>
+  </form>
 </main>
     </div>
     <footer class="govuk-footer " role="contentinfo">

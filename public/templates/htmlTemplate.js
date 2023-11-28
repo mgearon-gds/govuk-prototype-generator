@@ -1,4 +1,4 @@
-
+const htmlTemplate = (content) => `
   <!DOCTYPE html>
   <html lang="en" class="govuk-template ">
 
@@ -54,35 +54,7 @@
       </div>
     </header>
     <div class="govuk-width-container ">
-      <main>
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" aria-describedby="contact-preference-hint">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-        <h1 class="govuk-fieldset__heading">How would you like to be contacted about your application?</h1>
-      </legend>
-      <span id="contact-preference-hint" class="govuk-hint">
-        Please select your preferred method of contact
-      </span>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="email" name="contact-preference" type="checkbox" value="email">
-        <label class="govuk-label govuk-checkboxes__label" for="email">Email</label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="phone" name="contact-preference" type="checkbox" value="phone">
-        <label class="govuk-label govuk-checkboxes__label" for="phone">Phone</label>
-      </div>
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="contact-number" name="contact-preference" type="checkbox" value="contact-number">
-        <label class="govuk-label govuk-checkboxes__label" for="contact-number">Contact number</label>
-      </div>
-    </fieldset>
-  </div>
-  <p class="govuk-body">You can select one or more options.</p>
-  <div class="govuk-form-group">
-    <label class="govuk-label" for="email-input">Email address</label>
-    <input class="govuk-input" id="email-input" name="email" type="email">
-  </div>
-</main>
+      ${content}
     </div>
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">
@@ -122,4 +94,6 @@
     </script>
   </body>
   </html>
-  
+  `;
+
+  module.exports = htmlTemplate;
