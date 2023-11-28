@@ -8,10 +8,14 @@ require('dotenv').config();
 
 //Templates
 const htmlTemplate = require('./public/templates/htmlTemplate'); // Import the HTML template
+const instructionsContent = require('./public/templates/instructions'); // Import the instructions content
+const directoryTemplate = require('./public/templates/directoryTemplate'); // Import the directory template
+
 
 app.use(express.json());
 app.use(express.static('public'));
 
+let generatedPages = []; // Keep track of generated pages
 
 app.post('/sendToOpenAI', async (req, res) => {
   const question = req.body.question;
@@ -22,7 +26,7 @@ app.post('/sendToOpenAI', async (req, res) => {
   		messages: [
 		{
 			role: "system", 
-			content: "You are a code generator. You only respond with HTML code that uses  components and patterns from the GOV.UK Design System, and nothing else.\n\nYou need to pick the right components, for example accordions or lists. You also need to use the right patterns and recognise when something should be formatted as a start page or a question page or a task.\n\nOnly include main content that's inside <main>. IGNORE metadata (<meta>), header (<header>) and footer (<footer>). Don't include anything that isn't code. Only respond with code as plain text without code block syntax around it."
+      content: instructionsContent, // Use the imported instructions content
 		},
 		{
 			role: "user",
@@ -38,6 +42,20 @@ app.post('/sendToOpenAI', async (req, res) => {
     fs.writeFile('public/pages/' + filename, htmlTemplate(htmlContent), (err) => {
       if (err) {
         console.error('Error writing file:', err);
+      }
+    });
+
+    // Update the generated pages list
+    const newPage = {
+      filename: filename,
+      completion: completion,
+    };
+    generatedPages.push(newPage);
+
+    // Update the directory page
+    fs.writeFile('public/directory.html', directoryTemplate(generatedPages), (err) => {
+      if (err) {
+        console.error('Error writing directory file:', err);
       }
     });
 
